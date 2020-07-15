@@ -1,0 +1,17 @@
+
+# dependencies
+node_modules*
+
+# miscellaneous
+*.lock
+
+# outputs
+*.log
+logs*
+
+# webpack
+dist/
+build/
+
+# environment
+.env

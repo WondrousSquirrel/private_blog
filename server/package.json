@@ -1,0 +1,53 @@
+{
+  "name": "boilerplate_api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "license": "MIT",
+  "description": "express api for fullstack template",
+  "scripts": {
+    "start": "babel-node server.js",
+    "dev": "nodemon  --exec babel-node server.js",
+    "test": "mocha --require @babel/register test/ --exit",
+    "lint": "eslint **/*.js --quiet",
+    "lint:full": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js"
+  },
+  "author": {
+    "name": "Alexander Antoschuk",
+    "email": "wondroussquirrel@gmail.com"
+  },
+  "homepage": "https://github.com/WondrousSquirrel/fullstack/tree/master/server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WondrousSquirrel/fullstack/tree/master/server"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "api",
+    "template",
+    "dotenv",
+    "loggers",
+    "babel"
+  ],
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mocha": "^8.0.1",
+    "morgan": "^1.10.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.1",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/register": "^7.10.4",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.4"
+  }
+}
