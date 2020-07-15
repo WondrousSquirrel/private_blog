@@ -1,10 +1,10 @@
 {
-  "name": "boilerplate_api",
+  "name": "private_blog_api",
   "version": "1.0.0",
   "private": true,
   "main": "server.js",
   "license": "MIT",
-  "description": "express api for fullstack template",
+  "description": "express api for private blog",
   "scripts": {
     "start": "babel-node server.js",
     "dev": "nodemon  --exec babel-node server.js",
@@ -17,10 +17,10 @@
     "name": "Alexander Antoschuk",
     "email": "wondroussquirrel@gmail.com"
   },
-  "homepage": "https://github.com/WondrousSquirrel/fullstack/tree/master/server",
+  "homepage": "https://github.com/WondrousSquirrel/private_blog",
   "repository": {
     "type": "git",
-    "url": "https://github.com/WondrousSquirrel/fullstack/tree/master/server"
+    "url": "https://github.com/WondrousSquirrel/private_blog"
   },
   "keywords": [
     "express",
