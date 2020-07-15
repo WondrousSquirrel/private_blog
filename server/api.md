@@ -17,3 +17,4 @@
 Содержит:
 
 `PORT=номер_порта`
+`NODE_ENV=вид_окружения` - production/development/test

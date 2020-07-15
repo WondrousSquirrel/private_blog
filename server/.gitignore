@@ -1,0 +1,15 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# dependencies
+node_modules*
+
+# miscellaneous
+*.lock
+
+# outputs
+*.log
+logs*
