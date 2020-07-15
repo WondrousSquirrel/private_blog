@@ -35,3 +35,7 @@ docker-compose up
 Этот проект под лицензией GNU General Public License v3.0 [GNU GPLv3](./license.md)
 
 Не забудьте изменить лицензию, по вашей необходимости.
+
+### Деплой
+
+[ULR](http://node-env.eba-h2rsrmam.eu-central-1.elasticbeanstalk.com/)

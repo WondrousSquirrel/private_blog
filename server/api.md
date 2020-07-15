@@ -17,4 +17,4 @@
 Содержит:
 
 `PORT=номер_порта`
-`NODE_ENV=вид_окружения` - production/development/test
+`NODE_ENV=вид_окружения` - production/development/test *Не забывать переводить в production перед деплоем*
