@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./Components/Navbar/navbar.scss";
+@import "./Components/Footer/footer.scss";
 
 * {
   padding: 0;
@@ -16,8 +18,13 @@ body,
   height: 100%;
 }
 
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .centered {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,4 +36,10 @@ body,
 
 .title {
   font-size: 3.5rem;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
