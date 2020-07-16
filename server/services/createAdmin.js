@@ -5,7 +5,7 @@ dotenv.config();
 // Обьект с данными администратора сайта
 const adminData = {
   name: process.env.ADMIN_NAME || 'admin',
-  email: process.env.ADMIN_EMAIL || 'cxcvx@gmail.com',
+  email: process.env.ADMIN_EMAIL || 'admin@gmail.com',
   password: process.env.ADMIN_PASSWORD || 'admin_password',
 }
 

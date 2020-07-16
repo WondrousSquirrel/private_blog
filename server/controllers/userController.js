@@ -4,7 +4,7 @@ import moment from 'moment';
 import pool from '../services/postgres';
 import logger from '../services/logger';
 import adminData from '../services/createAdmin';
-import { get_token } from '../middleware/auth';
+import { getToken } from '../middleware/auth';
 
 const userList = (request, response) => {
   const order = request.params.order || 'DESC';
@@ -38,7 +38,7 @@ const createUser = (request, response) => {
         };
         const result = res.rows[0];
         delete result.password;
-        response.cookie("x-access-token", get_token(result), options);
+        response.cookie("x-access-token", getToken(result), options);
         return response.send(result);
       })
       .catch(error => {
@@ -69,7 +69,7 @@ const createAdmin = (request, response) => {
         const result = res.rows;
         delete result.password;
         logger.debug('Admin created');
-        response.cookie("x-access-token", get_token(result), options);
+        response.cookie("x-access-token", getToken(result), options);
         return response.send('Администратор создан');
       })
       .catch(error => {
@@ -149,7 +149,7 @@ const login = async (request, response) => {
       };
       const result = res.rows[0];
       delete result.password;
-      response.cookie("x-access-token", get_token(result), options);
+      response.cookie("x-access-token", getToken(result), options);
       return response.send(result);
     })
     .catch(() => response.status(401).send('Не верный пароль'))

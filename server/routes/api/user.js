@@ -8,13 +8,13 @@ import {
   createAdmin,
   getUserById
   } from "../../controllers/userController";
-import { is_authenticated, is_admin } from "../../middleware/auth";
+import { isAuthenticated, isAdmin } from "../../middleware/auth";
 
 const router = express.Router();
 
-router.get("/createadmin", createAdmin);
+router.get("/createadmin", isAdmin, createAdmin);
 router.post("/", createUser);
-router.get("/", is_authenticated, userList);
+router.get("/", isAuthenticated, userList);
 router.get('/:id', getUserById);
 router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
