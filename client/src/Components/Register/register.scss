@@ -1,0 +1,54 @@
+.register {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.registerForm {
+  background-color: white;
+  padding: 8rem 5rem 8rem 5rem;
+  border: .1rem silver solid;
+  border-radius: .5rem;
+}
+
+.registerTitle {
+  text-align: center;
+  margin-top: -5rem;
+}
+
+.registerButton {
+  width: 100%;
+  background-color: black;
+  margin: 3rem 0 -1rem 0;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.8rem;
+}
+.registerButton:hover {
+  background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(215,70,163,1) 35%, rgba(255,154,0,1) 57%);
+}
+
+.fields{
+  margin: .5rem 0;
+}
+
+.fields input {
+  // height: 2.5rem;
+  width: 100%;
+}
+
+.errors {
+  color: #d68484;
+  font-size: 1.7rem;
+}
+
+@media screen and (max-height: 600px) and (max-width: 600px) {
+  .registerForm {
+    width: 100%;
+    padding: 4rem 2.5rem 4rem 2.5rem;
+  }
+}
