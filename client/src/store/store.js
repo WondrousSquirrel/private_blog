@@ -24,7 +24,7 @@ const pReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
   pReducer,
   //compose(applyMiddleware(sagaMiddleware),
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 );
 const persistor = persistStore(store);
 
