@@ -59,6 +59,7 @@
   }
   .registerForm {
     height: 48rem;
+    padding: 0 3rem;
     border-radius: .5rem;
   }
   .registerButton {
@@ -66,17 +67,17 @@
     font-size: 1.6rem;
   }
   .registerTitle {
-    margin: 2rem 0 1.5rem 0;
+    margin: 2rem 0 1rem 0;
   }
   .errors {
     font-size: 1.5rem;
-    margin-top: -2.2rem;
+    margin-top: -2.4rem;
   }
 }
 
 @media screen and (max-height: 600px) and (max-width: 600px) {
   .registerForm {
     width: 100%;
-    padding: 4rem 2.5rem 4rem 2.5rem;
+    //padding: 4rem 2.5rem 4rem 2.5rem;
   }
 }
