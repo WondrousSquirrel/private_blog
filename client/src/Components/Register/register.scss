@@ -18,6 +18,8 @@
 .registerTitle {
   text-align: center;
   margin-top: -5rem;
+  font-weight: 550;
+  letter-spacing: .2rem;
 }
 
 .registerButton {
@@ -31,19 +33,45 @@
 .registerButton:hover {
   background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(215,70,163,1) 35%, rgba(255,154,0,1) 57%);
 }
+.registerButton:focus {
+  background-color: #260C39;
+}
 
 .fields{
   margin: .5rem 0;
 }
 
 .fields input {
-  // height: 2.5rem;
   width: 100%;
 }
 
 .errors {
   color: #d68484;
   font-size: 1.7rem;
+}
+
+@media screen and (max-height: 800px) {
+  .fields{
+    margin-bottom: 2.2rem;
+  }
+  .register {
+    font-size: 1.8rem;
+  }
+  .registerForm {
+    height: 48rem;
+    border-radius: .5rem;
+  }
+  .registerButton {
+    margin: 1rem 0;
+    font-size: 1.6rem;
+  }
+  .registerTitle {
+    margin: 2rem 0 1.5rem 0;
+  }
+  .errors {
+    font-size: 1.5rem;
+    margin-top: -2.2rem;
+  }
 }
 
 @media screen and (max-height: 600px) and (max-width: 600px) {

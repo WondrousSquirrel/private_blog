@@ -12,24 +12,24 @@ const Register = ({ errors, touched }) => {
         <div className="fields">
           <label htmlFor="name">Имя</label>
           <Field name="name" type="text" />
-          {touched.name && errors.name && <div className="errors">{errors.name}</div>}
         </div>
+        {touched.name && errors.name && <div className="errors">{errors.name}</div>}
         <div className="fields">
           <label htmlFor="email">Электроный адрес</label>
           <Field name="email" type="text" />
-          {touched.email && errors.email && <div className="errors">{errors.email}</div>}
         </div>
+        {touched.email && errors.email && <div className="errors">{errors.email}</div>}
         <div className="fields">
           <label htmlFor="password">Пароль</label>
           <Field name="password" type="password" />
-          {touched.password && errors.password && <div className="errors">{errors.password}</div>}
         </div>
+        {touched.password && errors.password && <div className="errors">{errors.password}</div>}
         <div className="fields">
           <label htmlFor="rePassword">Повторите пароль</label>
           <Field name="rePassword" type="password" />
-          {touched.rePassword && errors.rePassword &&
-            <div className="errors">{errors.rePassword}</div>}
         </div>
+        {touched.rePassword && errors.rePassword &&
+          <div className="errors">{errors.rePassword}</div>}
         <Button type="submit" variant="primary" size="lg" className="registerButton">Регистрация</Button>
       </Form>
     </div>
