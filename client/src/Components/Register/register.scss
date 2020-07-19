@@ -9,6 +9,7 @@
 }
 
 .registerForm {
+  height: 60rem;
   background-color: white;
   padding: 8rem 5rem 8rem 5rem;
   border: .1rem silver solid;
@@ -38,7 +39,7 @@
 }
 
 .fields{
-  margin: .5rem 0;
+  margin-bottom: 3rem;
 }
 
 .fields input {
@@ -48,6 +49,7 @@
 .errors {
   color: #d68484;
   font-size: 1.7rem;
+  margin-top: -2.5rem;
 }
 
 @media screen and (max-height: 800px) {
@@ -75,8 +77,10 @@
   }
 }
 
-@media screen and (max-height: 600px) and (max-width: 600px) {
+@media screen and (max-width: 600px),
+screen and (max-height:600px){
   .registerForm {
+    height: 100%;
     width: 100%;
     //padding: 4rem 2.5rem 4rem 2.5rem;
   }
