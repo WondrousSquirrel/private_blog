@@ -3,9 +3,10 @@
   Саги нужны для сайд-эффектов, к примеру запросы апи.
 */
 
-// import { all, fork } from "redux-saga";
+import { all, fork } from "redux-saga/effects";
+
+import * as authSaga from '../sagas/authSaga';
 
 export default function* rootSaga() {
-  // yield all([...Object.values(someSaga)].map(fork))
-  yield console.log("Delete this when start developing sagas");
+  yield all([...Object.values(authSaga)].map(fork));
 }

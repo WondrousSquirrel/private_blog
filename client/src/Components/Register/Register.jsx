@@ -1,8 +1,10 @@
 import React from 'react';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 import { withFormik, Form, Field } from "formik";
 import { Button } from 'react-bootstrap';
+import { registerRequest } from '../../actions/authActions';
 
 const Register = ({ errors, touched }) => {
   return (
@@ -30,7 +32,9 @@ const Register = ({ errors, touched }) => {
         </div>
         {touched.rePassword && errors.rePassword &&
           <div className="errors">{errors.rePassword}</div>}
-        <Button type="submit" variant="primary" size="lg" className="registerButton">Регистрация</Button>
+        <Button type="submit" variant="primary"size="lg" className="registerButton">
+          Регистрация
+        </Button>
       </Form>
     </div>
   );
@@ -66,15 +70,31 @@ const validatedRegister = withFormik({
       .required("Поле обязательное"),
   }),
   handleSubmit(values, { props, resetForm, setSubmitting }) {
-    console.log(values);
+    const newUser = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+    props.registerRequest(newUser);
+    setSubmitting(false);
     resetForm();
   },
 })(Register);
 
+const mapDispatchToProps = (dispatch) => ({
+  registerRequest: (user) => {
+    dispatch(registerRequest(user));
+  },
+});
+
+const SingUpWrapper = connect(
+  null,
+  mapDispatchToProps
+)(validatedRegister);
 
 Register.propTypes = {
   errors: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
 };
 
-export default validatedRegister;
+export default SingUpWrapper;

@@ -30,16 +30,9 @@ const createUser = (request, response) => {
       pool
       .query(`INSERT INTO users(name, email, password, created_on) VALUES($1, $2, $3, $4) RETURNING *`, values)
       .then(res => {
-        let options = {
-          path: "/",
-          sameSite: true,
-          maxAge: 1000 * 60 * 60 * 48,
-          httpOnly: true,
-        };
         const result = res.rows[0];
         delete result.password;
-        response.cookie("x-access-token", getToken(result), options);
-        return response.send(result);
+        return response.send({user: result, token: getToken(result)});
       })
       .catch(error => {
         logger.info(`Create User Error While Register User: ${error.stack}`);
@@ -60,16 +53,8 @@ const createAdmin = (request, response) => {
       pool
       .query(`INSERT INTO users(name, email, password, created_on) VALUES($1, $2, $3, $4) RETURNING *`, values)
       .then(res => {
-        let options = {
-          path: "/",
-          sameSite: true,
-          maxAge: 1000 * 60 * 60 * 48,
-          httpOnly: true,
-        };
         const result = res.rows;
         delete result.password;
-        logger.debug('Admin created');
-        response.cookie("x-access-token", getToken(result), options);
         return response.send('Администратор создан');
       })
       .catch(error => {
@@ -141,16 +126,9 @@ const login = async (request, response) => {
     bcrypt
     .compare(password, res.rows[0].password)
     .then(() => {
-      let options = {
-        path: "/",
-        sameSite: true,
-        maxAge: 1000 * 60 * 60 * 48, // 48 hours
-        httpOnly: true,
-      };
       const result = res.rows[0];
       delete result.password;
-      response.cookie("x-access-token", getToken(result), options);
-      return response.send(result);
+      return response.send({user: result, token: getToken(result)});
     })
     .catch(() => response.status(401).send('Не верный пароль'))
   })

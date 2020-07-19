@@ -11,23 +11,24 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 import rootSaga from "./rootSaga";
 import rootReducer from "./rootReducer";
+import authReducer from "../reducers/authReducer";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: [''] // список редьюсеров которые необходимо хранить
+  whitelist: [authReducer] // список редьюсеров которые необходимо хранить
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
   pReducer,
-  //compose(applyMiddleware(sagaMiddleware),
-  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+  compose(applyMiddleware(sagaMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 );
 const persistor = persistStore(store);
 
-//sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 export {persistor, store};
