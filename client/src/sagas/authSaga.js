@@ -14,6 +14,6 @@ function* registerWorker(action) {
     const result = yield call(registerService, action.payload);
     yield put(registerSuccess(result));
   } catch (error) {
-    yield put(registerFailed(error.message));
+    yield put(registerFailed(error));
   }
 }

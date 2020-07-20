@@ -25,8 +25,7 @@ const persistConfig = {
 const devTools = ENVIRONMENT === 'production' ?
   applyMiddleware(sagaMiddleware) :
   compose(applyMiddleware(sagaMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const pReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(

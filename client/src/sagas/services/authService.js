@@ -8,7 +8,7 @@ export const registerService = async user => {
     Cookie.set("user_data", JSON.stringify(response.data));
     return response.data;
   }
-  catch (response_1) {
-    throw new Error(response_1);
+  catch (error) {
+    throw error.response.data;
   }
 };

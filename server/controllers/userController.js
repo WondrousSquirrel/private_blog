@@ -16,7 +16,7 @@ const userList = (request, response) => {
   })
   .catch(error => {
     logger.info(error.stack);
-    return response.status(500).send('Ошибка при запросе ' + error.stack);
+    return response.status(500).send('Не удалось заполучить список пользователей');
   });
 }
 
@@ -36,11 +36,11 @@ const createUser = (request, response) => {
       })
       .catch(error => {
         logger.info(`Create User Error While Register User: ${error.stack}`);
-        return response.status(400).send({ message: 'Ошибка при регистрации пользователя: ' + error.stack })
+        return response.status(400).send('Пользователь с данной почтой уже имеется')
       })
   }).catch(error => {
       logger.info(`Create User Error While Hashing: ${error.stack}`)
-      return response.status(400).send({ message: 'Ошибка при регистрации пользователя: ' + error.stack })
+      return response.status(400).send('Не удалось обработать запрос')
   })
 }
 
@@ -59,11 +59,11 @@ const createAdmin = (request, response) => {
       })
       .catch(error => {
         logger.info(`Create User Error While Register User: ${error.stack}`);
-        return response.status(400).send({ message: 'Ошибка при регистрации пользователя: ' + error.stack })
+        return response.status(400).send('Администратор уже создан')
       })
   }).catch(error => {
       logger.info(`Create User Error While Hashing: ${error.stack}`)
-      return response.status(400).send({ message: 'Ошибка при регистрации пользователя: ' + error.stack })
+      return response.status(400).send('Ошибка при регистрации пользователя: ' + error.stack)
   })
 }
 
@@ -76,7 +76,7 @@ const getUserById = (request, response) => {
   })
   .catch (error => {
     logger.info(`Error while querying user ${error.stack}`);
-    return response.status(400).send({ message: 'Ошибка при запросе пользователя: ' + error.stack })
+    return response.status(400).send('Пользователя с таким id не существует')
   })
 }
 
@@ -94,12 +94,12 @@ const updateUser = (request, response) => {
       })
       .catch(error => {
         logger.info(error.stack);
-        return response.status(400).send('Что-то пошло не так');
+        return response.status(400).send('Не удалось обновить пользователя');
       })
     })
   .catch(error => {
     logger.info(error.stack);
-    return response.status(400).send('Ошибка при хешировании пароля');
+    return response.status(400).send('Ошибка при обработке пароля');
   })
 
 }
@@ -114,7 +114,7 @@ const deleteUser =  (request, response) => {
   })
   .catch(error => {
     logger.info(`Error while deleting user ${error.stack}`);
-    return response.status(400).send({ message: 'Ошибка при удалинии пользователя: ' + error.stack })
+    return response.status(400).send({ message: 'Пользователя с данным id не существует', error: error.stack })
   })
 }
 
@@ -130,11 +130,14 @@ const login = async (request, response) => {
       delete result.password;
       return response.send({user: result, token: getToken(result)});
     })
-    .catch(() => response.status(401).send('Не верный пароль'))
+    .catch(error => {
+      logger.info(error.stack);
+      return response.status(401).send('Не верный пароль')
+    })
   })
   .catch(error => {
     logger.info(`Error while login ${error.stack}`);
-    return response.status(400).send({ message: 'Ошибка при вход в систему: ' + error.stack })
+    return response.status(400).send('Пользователя с такой почтой не существует')
   })
 }
 
