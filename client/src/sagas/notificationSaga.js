@@ -8,7 +8,7 @@ export function* registerSaga() {
 }
 
 /* Workers */
-function* notificationWorker(action) {
+function* notificationWorker() {
   yield delay(2000);
   yield put(closeNotification());
 }

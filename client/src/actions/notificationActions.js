@@ -8,6 +8,15 @@ export const requestFailedNotifications = message => ({
   }
 });
 
+export const requestSuccesNotification = message => ({
+  type: NOTIFICATION_OPEN,
+  payload: {
+    type: 'success',
+    message: message
+  }
+});
+
+
 export const closeNotification = () => ({
   type: NOTIFICATION_CLOSE
 });
