@@ -5,8 +5,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from "./store/store";
 
 import "./style.scss";
-import NavbarComponent from "./Components/Navbar/Navbar.jsx";
 import Footer from "./Components/Footer/Footer";
+import NavbarComponent from "./Components/Navbar/Navbar.jsx";
+import Notification from "./Components/Notification/Notification";
 import routes from "./routes";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <PersistGate loading={'Loading...'} persistor={persistor}>
           <NavbarComponent />
           <main>
+            <Notification />
             {routes}
           </main>
           <Footer />

@@ -1,0 +1,38 @@
+
+.notification {
+  // display: none;
+  // display: flex;
+  justify-content: center;
+  position: absolute;
+  margin-top: 2rem;
+  width: 100%;
+  background: transparent;
+}
+
+.notificationBody {
+  width: 70%;
+  padding: 0.8rem 0;
+  text-align: center;
+  //background-color: #12720b;
+  color: white;
+  letter-spacing: .2rem;
+  border-radius: 0.5rem;
+  font-size: 2.2rem;
+}
+
+@media screen and (max-width: 800px){
+  .notificationBody {
+    font-size: 1.5rem;
+    letter-spacing: 0;
+
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .notification{
+    margin: 0;
+  }
+  .notificationBody {
+    width: 100%;
+  }
+}

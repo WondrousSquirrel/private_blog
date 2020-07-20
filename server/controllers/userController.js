@@ -114,7 +114,7 @@ const deleteUser =  (request, response) => {
   })
   .catch(error => {
     logger.info(`Error while deleting user ${error.stack}`);
-    return response.status(400).send({ message: 'Пользователя с данным id не существует', error: error.stack })
+    return response.status(400).send('Пользователя с данным id не существует')
   })
 }
 
