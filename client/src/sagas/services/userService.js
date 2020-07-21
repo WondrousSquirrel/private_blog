@@ -1,10 +1,11 @@
 import axios from "axios";
 import Cookie from "js-cookie";
+import endpoint from "../../config/appConfig";
 
 export const registerService = async user => {
   try {
     const response = await axios
-      .post("http://127.0.0.1:5000/api/user/", user);
+      .post(`${endpoint}/api/user`, user);
     Cookie.set("user_data", JSON.stringify(response.data));
     return response.data;
   }
@@ -16,10 +17,12 @@ export const registerService = async user => {
 export const loginService = async user => {
   try {
     const response = await axios
-      .post("http://127.0.0.1:5000/api/user/login", user);
+      .post(`${endpoint}/api/user/login`, user);
+    console.log('try ' + response.data);
     Cookie.set("user_data", JSON.stringify(response.data));
     return response.data;
   } catch (error) {
+    console.log('catch '+ error.response);
     throw error.response.data;
   }
 };
