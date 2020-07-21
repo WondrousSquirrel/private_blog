@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { withFormik, Form, Field } from "formik";
 import { Button } from 'react-bootstrap';
-import { registerRequest } from '../../actions/authActions';
+import { registerRequest } from '../../actions/userActions';
 
 const Register = ({ errors, touched }) => {
   return (

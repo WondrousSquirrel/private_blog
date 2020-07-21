@@ -12,7 +12,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 import rootSaga from "./rootSaga";
 import rootReducer from "./rootReducer";
-import authReducer from "../reducers/authReducer";
+import userReducer from "../reducers/userReducer";
 import { ENVIRONMENT } from "../config/environment";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -20,13 +20,13 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: 'primary',
   storage,
-  whitelist: [authReducer] // список редьюсеров которые необходимо хранить
+  whitelist: [userReducer] // список редьюсеров которые необходимо хранить
 };
 
 const user = Cookie.getJSON('user_data') || null;
 
 const initialStore = {
-  auth: user
+  user
 };
 
 const devTools = ENVIRONMENT === 'production' ?

@@ -121,7 +121,7 @@ const deleteUser =  (request, response) => {
 const login = async (request, response) => {
   const { email, password } = request.body;
   pool
-  .query(`SELECT * FROM users WHERE email=${email}`)
+  .query(`SELECT * FROM users WHERE email='${email}'`)
   .then(res => {
     bcrypt
     .compare(password, res.rows[0].password)

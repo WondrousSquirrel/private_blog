@@ -1,4 +1,11 @@
-import { USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL } from "../types/types";
+import {
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
+  LOGIN_REQUEST,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS
+} from "../types/types";
 
 const initialState = {};
 
@@ -11,6 +18,18 @@ export default function (state=initialState, {type, payload}) {
       user: payload
     };
   case USER_REGISTER_FAIL: 
+    return {
+      loading: false,
+      error: payload
+    };
+  case LOGIN_REQUEST: return { loadgin: true};
+  case LOGIN_SUCCESS: {
+    return {
+      loading: false,
+      user: payload
+    };
+  }
+  case LOGIN_FAIL: 
     return {
       loading: false,
       error: payload
