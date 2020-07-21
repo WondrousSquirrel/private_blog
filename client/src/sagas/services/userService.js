@@ -5,7 +5,7 @@ import endpoint from "../../config/appConfig";
 export const registerService = async user => {
   try {
     const response = await axios
-      .post(`${endpoint}/api/user`, user);
+      .post('http://node-env.eba-h2rsrmam.eu-central-1.elasticbeanstalk.com/api/user', user);
     Cookie.set("user_data", JSON.stringify(response.data));
     return response.data;
   }
@@ -17,12 +17,12 @@ export const registerService = async user => {
 export const loginService = async user => {
   try {
     const response = await axios
-      .post(`${endpoint}/api/user/login`, user);
+      .post('http://node-env.eba-h2rsrmam.eu-central-1.elasticbeanstalk.com/api/user/login', user);
     console.log('try ' + response.data);
     Cookie.set("user_data", JSON.stringify(response.data));
     return response.data;
   } catch (error) {
-    console.log('catch '+ error.response);
+    console.log(`${endpoint}/api/user/login:  `+ error.response);
     throw error.response.data;
   }
 };
