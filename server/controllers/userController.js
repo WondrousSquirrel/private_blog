@@ -125,19 +125,22 @@ const login = async (request, response) => {
   .then(res => {
     bcrypt
     .compare(password, res.rows[0].password)
-    .then(() => {
+    .then (compareResult => {
+      if (compareResult === false) {
+        response.status(401).send('Не верный пароль')
+      }
       const result = res.rows[0];
       delete result.password;
-      return response.send({user: result, token: getToken(result)});
+      return  response.send({user: result, token: getToken(result)});
     })
     .catch(error => {
       logger.info(error.stack);
-      return response.status(401).send('Не верный пароль')
+      return response(500).send('Ошибка при обработке запроса')
     })
   })
   .catch(error => {
     logger.info(`Error while login ${error.stack}`);
-    return response.status(400).send('Пользователя с такой почтой не существует')
+    response.status(400).send('Пользователя с такой почтой не существует')
   })
 }
 

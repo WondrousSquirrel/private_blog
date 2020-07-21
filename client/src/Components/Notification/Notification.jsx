@@ -19,6 +19,10 @@ const mapStateToProps = (state) => ({
   notification: state.notification
 });
 
+Notification.propTypes = {
+  notification: PropTypes.object.isRequired,
+};
+
 export default connect(
   mapStateToProps,
   null
