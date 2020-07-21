@@ -1,4 +1,5 @@
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call, select, takeLatest } from "redux-saga/effects";
+import Cookie from 'js-cookie';
 
 import { registerService, loginService } from "./services/userService";
 import { registerSuccess, registerFailed, loginFailed, loginSuccess } from "../actions/userActions";
@@ -8,7 +9,8 @@ import {
   USER_REGISTER_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_FAIL,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGOUT
 } from "../types/types";
 import {
   requestFailedNotifications,
@@ -31,6 +33,10 @@ export function* loginSaga() {
   yield takeEvery(LOGIN_REQUEST, loginWorker);
 }
 
+export function* logoutSaga() {
+  yield takeLatest(LOGOUT, logoutWorker);
+}
+
 /* Workers */
 function* registerWorker(action) {
   try {
@@ -48,6 +54,10 @@ function* loginWorker(action) {
   } catch (error) {
     yield put(loginFailed(error));
   }
+}
+
+function* logoutWorker() {
+  yield Cookie.remove('user_data');
 }
 
 function* authSuccessWorker(action) {

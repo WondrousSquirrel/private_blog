@@ -4,7 +4,8 @@ import {
   USER_REGISTER_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT,
 } from "../types/types";
 
 export const registerRequest = user => ({
@@ -35,4 +36,8 @@ export const loginSuccess = user => ({
 export const loginFailed = error => ({
   type: LOGIN_FAIL,
   payload: error
+});
+
+export const logout = () => ({
+  type: LOGOUT
 });

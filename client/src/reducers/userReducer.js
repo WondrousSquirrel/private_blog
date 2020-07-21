@@ -4,7 +4,8 @@ import {
   USER_REGISTER_FAIL,
   LOGIN_REQUEST,
   LOGIN_FAIL,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGOUT
 } from "../types/types";
 
 const initialState = {};
@@ -34,6 +35,8 @@ export default function (state=initialState, {type, payload}) {
       loading: false,
       error: payload
     };
+  case LOGOUT:
+    return null;
   default: return state;
   }
 }
