@@ -1,13 +1,14 @@
 import React from 'react';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import { withFormik, Form, Field } from "formik";
 
 const Login = ({errors, touched }) => {
   return (
-    <div>
-      <Form>
-        <p>Вход</p>
+    <div className='auth'>
+      <Form className='loginForm'>
+        <p className='authTitle'>Вход</p>
         <div className='fields'>
           <label htmlFor="name">Почта</label>
           <Field name="email" type="text" />
@@ -18,6 +19,9 @@ const Login = ({errors, touched }) => {
           <Field name="password" type="text" />
         </div>
         {touched.password && errors.password && <div className="errors">{errors.password}</div>}
+        <Button type="submit" variant="primary"size="lg" className="authButton">
+          Войти
+        </Button>
       </Form>
     </div>
   );

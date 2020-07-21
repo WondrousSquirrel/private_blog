@@ -8,9 +8,9 @@ import { registerRequest } from '../../actions/authActions';
 
 const Register = ({ errors, touched }) => {
   return (
-    <div className='register'>
+    <div className='auth'>
       <Form className='registerForm'>
-        <p className='registerTitle'>Регистрация</p>
+        <p className='authTitle'>Регистрация</p>
         <div className="fields">
           <label htmlFor="name">Имя</label>
           <Field name="name" type="text" />
@@ -32,7 +32,7 @@ const Register = ({ errors, touched }) => {
         </div>
         {touched.rePassword && errors.rePassword &&
           <div className="errors">{errors.rePassword}</div>}
-        <Button type="submit" variant="primary"size="lg" className="registerButton">
+        <Button type="submit" variant="primary"size="lg" className="authButton">
           Регистрация
         </Button>
       </Form>
