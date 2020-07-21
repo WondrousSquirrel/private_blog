@@ -4,6 +4,7 @@
   с хранилищем.
  */
 
+import Cookie from 'js-cookie';
 import createSagaMiddleware from "redux-saga";
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -22,6 +23,12 @@ const persistConfig = {
   whitelist: [authReducer] // список редьюсеров которые необходимо хранить
 };
 
+const user = Cookie.getJSON('user_data') || null;
+
+const initialStore = {
+  auth: user
+};
+
 const devTools = ENVIRONMENT === 'production' ?
   applyMiddleware(sagaMiddleware) :
   compose(applyMiddleware(sagaMiddleware),
@@ -29,7 +36,7 @@ const devTools = ENVIRONMENT === 'production' ?
 
 const pReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
-  pReducer, devTools  
+  pReducer, initialStore, devTools  
 );
 
 const persistor = persistStore(store);
