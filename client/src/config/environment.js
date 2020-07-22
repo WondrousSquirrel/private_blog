@@ -2,4 +2,6 @@
   Константа в которой указывается текущее окружение проекта,
  */
 
-export const ENVIRONMENT = 'production';
+const ENVIRONMENT = 'development';
+
+export default ENVIRONMENT;

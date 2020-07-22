@@ -23,7 +23,7 @@ const persistConfig = {
   whitelist: [userReducer] // список редьюсеров которые необходимо хранить
 };
 
-const user = Cookie.getJSON('user_data') || null;
+const user = Cookie.getJSON('user_data') || { };
 
 const initialStore = {
   user

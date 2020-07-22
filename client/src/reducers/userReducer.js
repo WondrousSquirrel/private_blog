@@ -36,7 +36,7 @@ export default function (state=initialState, {type, payload}) {
       error: payload
     };
   case LOGOUT:
-    return null;
+    return {};
   default: return state;
   }
 }
