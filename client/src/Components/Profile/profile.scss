@@ -1,0 +1,65 @@
+.profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile {
+  width: 55rem;
+  height: 60rem;
+  background: white;
+  border-radius: 0.9rem;
+  padding: 0 5rem;
+  -webkit-box-shadow: 10px 10px 16px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 16px -5px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 16px -5px rgba(0,0,0,0.75);
+}
+
+.avatar-wrapper {
+  margin: 5rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 10rem;
+}
+
+.profile-avatar { 
+  object-fit: cover;
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+}
+
+
+.profile-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin profile-button ($bg-color, $color){
+  width: 15rem;
+  background-color: $bg-color;
+  font-size: 1.8rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: $color;
+}
+
+.edit-profile-button {
+  @include profile-button(#63becc, white);
+}
+.edit-profile-button:hover {
+  background-color: #718a93;
+}
+
+.delete-user-button {
+  @include profile-button(#d17b88, white);
+}
+.delete-user-button:hover {
+  background-color: #718a93;
+}
