@@ -1,3 +1,12 @@
+@mixin authForm() {
+  background-color: white;
+  padding: 8rem 5rem 8rem 5rem;
+  border-radius: .5rem;
+  -webkit-box-shadow: 10px 10px 58px -19px rgba(48,48,48,1);
+  -moz-box-shadow: 10px 10px 58px -19px rgba(48,48,48,1);
+  box-shadow: 10px 10px 58px -19px rgba(48,48,48,1);
+}
+
 .auth {
   width: 100%;
   height: 100%;
@@ -10,18 +19,12 @@
 
 .registerForm {
   height: 60rem;
-  background-color: white;
-  padding: 8rem 5rem 8rem 5rem;
-  border: .1rem silver solid;
-  border-radius: .5rem;
+  @include authForm();
 }
 
 .loginForm {
   height: 40rem;
-  background-color: white;
-  padding: 8rem 5rem 8rem 5rem;
-  border: .1rem silver solid;
-  border-radius: .5rem;
+  @include authForm();
 }
 
 .authTitle {

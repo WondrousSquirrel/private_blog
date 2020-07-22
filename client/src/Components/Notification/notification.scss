@@ -1,7 +1,5 @@
 
 .notification {
-  // display: none;
-  // display: flex;
   justify-content: center;
   position: absolute;
   margin-top: 2rem;
@@ -13,11 +11,13 @@
   width: 70%;
   padding: 0.8rem 0;
   text-align: center;
-  //background-color: #12720b;
   color: white;
   letter-spacing: .2rem;
   border-radius: 0.5rem;
   font-size: 2.2rem;
+  -webkit-box-shadow: 10px 10px 19px -4px rgba(0,0,0,0.48);
+  -moz-box-shadow: 10px 10px 19px -4px rgba(0,0,0,0.48);
+  box-shadow: 10px 10px 19px -4px rgba(0,0,0,0.48);
 }
 
 @media screen and (max-width: 800px){

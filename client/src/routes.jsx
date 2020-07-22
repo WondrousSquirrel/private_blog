@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router';
 
 const Register = lazy(() => import('./Components/Auth/Register'));
 const Login = lazy(() => import('./Components/Auth/Login'));
+const Profile = lazy(() => import ('./Components/Profile/Profile'));
 
 const Home = () => <h1>Home</h1>;
 
@@ -11,6 +12,7 @@ const createRoutes = () => <Switch>
     <Route exact path='/' component={Home}/>
     <Route path='/register' component={Register}/>
     <Route path='/login' component={Login}/>
+    <Route path='/profile' component={Profile}/>
   </Suspense>
 </Switch>;
 
