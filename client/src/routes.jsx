@@ -1,6 +1,8 @@
 import React, { Suspense, lazy} from 'react';
 import { Route, Switch } from 'react-router';
 
+import ProtectedRoute from './Components/protectedRoute';
+
 const Register = lazy(() => import('./Components/Auth/Register'));
 const Login = lazy(() => import('./Components/Auth/Login'));
 const Profile = lazy(() => import ('./Components/Profile/Profile'));
@@ -12,7 +14,7 @@ const createRoutes = () => <Switch>
     <Route exact path='/' component={Home}/>
     <Route path='/register' component={Register}/>
     <Route path='/login' component={Login}/>
-    <Route path='/profile' component={Profile}/>
+    <ProtectedRoute path='/profile' component={Profile} />
   </Suspense>
 </Switch>;
 

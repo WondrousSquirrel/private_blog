@@ -7,7 +7,7 @@ export default function (state=initialState, {type, payload}) {
   case NOTIFICATION_OPEN:
     return {...state, ...payload};
   case NOTIFICATION_CLOSE:
-    return initialState;
+    return state = {};
   default: return state;
   }
 }

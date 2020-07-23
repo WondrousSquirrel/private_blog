@@ -10,7 +10,7 @@ import { environment } from "./config/environment";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 if (appConfig.environment === environment.production) {
   app.get("/", (request, response) => {

@@ -20,20 +20,19 @@ const getToken = (user) => {
 
 
 const isAuthenticated = (request, response, next) => {
-  // const token = request.cookies["x-access-token"];
   const _token = request.headers.authorization;
   if (_token) {
-    const token = token.slice(7, token.length);
+    const token = _token.slice(7, _token.length);
     jwt.verify(token, authConfig.secretKey, (err, decode) => {
       if (err) {
-        return response.status(401).send({ message: 'Не верный токен' });
+        return response.status(401).send('Не верный токен');
       }
       request.user = decode;
       next();
       return;
     });
   } else {
-    return response.status(401).send({ message: 'Необходимо войти в систему.' });
+    return response.status(401).send('Необходимо войти в систему');
   }
 };
 

@@ -2,7 +2,7 @@ import { takeEvery, put, call, select, takeLatest } from "redux-saga/effects";
 import Cookie from 'js-cookie';
 
 import { registerService, loginService, getUserService } from "./services/userService";
-import { registerSuccess, registerFailed, loginFailed, loginSuccess } from "../actions/userActions";
+import { registerSuccess, registerFailed, loginFailed, loginSuccess, getUserSuccess, getUserFailed } from "../actions/userActions";
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_FAIL,
@@ -12,8 +12,7 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   GET_USER_REQUEST,
-  GET_USER_FAIL,
-  GET_USER_SUCCESS
+  GET_USER_FAIL
 } from "../types/types";
 import {
   requestFailedNotifications,
@@ -29,7 +28,7 @@ export function* authFail() {
 }
 
 export function* authSuccess() {
-  yield takeEvery([USER_REGISTER_SUCCESS, LOGIN_SUCCESS, GET_USER_SUCCESS], authSuccessWorker);
+  yield takeEvery([USER_REGISTER_SUCCESS, LOGIN_SUCCESS], authSuccessWorker);
 }
 
 export function* loginSaga() {
@@ -88,11 +87,12 @@ function* authFailWorker() {
 }
 
 function* getUserWorker() {
-  const user = state => state.user;
+  const getUser = state => state.user;
+  const user = yield select(getUser);
   try {
     const result = yield call(getUserService, user.id, user.token);
-    yield put(registerSuccess(result));
+    yield put(getUserSuccess(result));
   } catch (error) {
-    yield put(registerFailed(error));
+    yield put(getUserFailed(error));
   }
 }
