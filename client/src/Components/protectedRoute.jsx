@@ -5,7 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(state => state.user);
   return (
-    isAuthenticated ? <Route {...rest} render={
+    isAuthenticated.hasOwnProperty('token') ? <Route {...rest} render={
       props => <Component {...rest} {...props} />
     } /> : <Redirect to='/'/> 
   );
