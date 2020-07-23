@@ -24,3 +24,17 @@ export const loginService = async user => {
     throw error.response.data;
   }
 };
+
+export const getUserService = async (id, token) => {
+  try {
+    const response = await axios
+      .get(`${endpoint}/api/user/${id}`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      });
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};

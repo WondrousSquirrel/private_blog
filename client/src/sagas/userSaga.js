@@ -1,7 +1,7 @@
 import { takeEvery, put, call, select, takeLatest } from "redux-saga/effects";
 import Cookie from 'js-cookie';
 
-import { registerService, loginService } from "./services/userService";
+import { registerService, loginService, getUserService } from "./services/userService";
 import { registerSuccess, registerFailed, loginFailed, loginSuccess } from "../actions/userActions";
 import {
   USER_REGISTER_REQUEST,
@@ -10,7 +10,10 @@ import {
   LOGIN_REQUEST,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  GET_USER_REQUEST,
+  GET_USER_FAIL,
+  GET_USER_SUCCESS
 } from "../types/types";
 import {
   requestFailedNotifications,
@@ -22,11 +25,11 @@ export function* registerSaga() {
 }
 
 export function* authFail() {
-  yield takeEvery([USER_REGISTER_FAIL, LOGIN_FAIL], authFailWorker);
+  yield takeEvery([USER_REGISTER_FAIL, LOGIN_FAIL, GET_USER_FAIL], authFailWorker);
 }
 
 export function* authSuccess() {
-  yield takeEvery([USER_REGISTER_SUCCESS, LOGIN_SUCCESS], authSuccessWorker);
+  yield takeEvery([USER_REGISTER_SUCCESS, LOGIN_SUCCESS, GET_USER_SUCCESS], authSuccessWorker);
 }
 
 export function* loginSaga() {
@@ -35,6 +38,10 @@ export function* loginSaga() {
 
 export function* logoutSaga() {
   yield takeLatest(LOGOUT, logoutWorker);
+}
+
+export function* getUserSaga() {
+  yield takeEvery(GET_USER_REQUEST, getUserWorker);
 }
 
 /* Workers */
@@ -78,4 +85,14 @@ function* authFailWorker() {
   const getError = state => state.user.error;
   const error = yield select(getError);
   yield put(requestFailedNotifications(error));
+}
+
+function* getUserWorker() {
+  const user = state => state.user;
+  try {
+    const result = yield call(getUserService, user.id, user.token);
+    yield put(registerSuccess(result));
+  } catch (error) {
+    yield put(registerFailed(error));
+  }
 }
