@@ -16,7 +16,7 @@ export default function (state=initialState, {type, payload}) {
   case USER_REGISTER_SUCCESS: 
     return {
       loading: false,
-      user: payload
+      ...payload
     };
   case USER_REGISTER_FAIL: 
     return {
@@ -27,7 +27,7 @@ export default function (state=initialState, {type, payload}) {
   case LOGIN_SUCCESS: {
     return {
       loading: false,
-      user: payload
+      ...payload
     };
   }
   case LOGIN_FAIL: 
@@ -36,7 +36,7 @@ export default function (state=initialState, {type, payload}) {
       error: payload
     };
   case LOGOUT:
-    return {};
+    return null;
   default: return state;
   }
 }

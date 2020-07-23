@@ -13,7 +13,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import rootSaga from "./rootSaga";
 import rootReducer from "./rootReducer";
 import userReducer from "../reducers/userReducer";
-import { ENVIRONMENT } from "../config/environment";
+import ENVIRONMENT from "../config/environment";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -23,7 +23,7 @@ const persistConfig = {
   whitelist: [userReducer] // список редьюсеров которые необходимо хранить
 };
 
-const user = Cookie.getJSON('user_data') || { };
+const user = Cookie.getJSON('user_data') || null;
 
 const initialStore = {
   user

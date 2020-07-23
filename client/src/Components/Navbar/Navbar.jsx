@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/userActions';
 
 const NavbarComponent = ({ logout, authUser}) => {
-  let { user } = authUser;
   const onClick = () => {
     logout();
   };
@@ -16,7 +15,7 @@ const NavbarComponent = ({ logout, authUser}) => {
       <Navbar className='navbar'>
         <Navbar.Brand as={Link} to='/'>Brand Link</Navbar.Brand>
         <Nav>
-          {user ? <>
+          {authUser ? <>
             <Nav.Link as={Link} to='/profile'>Профиль</Nav.Link>
             <Nav.Link as={Link} onClick={onClick} to='/'>Выход</Nav.Link>  
           </>: <>

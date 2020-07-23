@@ -12,7 +12,13 @@ const userList = (request, response) => {
   .query(`SELECT * FROM users ORDER BY id ${order}`)
   .then(res => {
     const result = res.rows;
-    return response.send(result);
+    return response.send({
+        id: result.id,
+        name: result.name,
+        email: result.email,
+        haveAccess: result.have_access,
+        isAdmin: result.is_admin,
+    });
   })
   .catch(error => {
     logger.info(error.stack);
@@ -31,8 +37,14 @@ const createUser = (request, response) => {
       .query(`INSERT INTO users(name, email, password, created_on) VALUES($1, $2, $3, $4) RETURNING *`, values)
       .then(res => {
         const result = res.rows[0];
-        delete result.password;
-        return response.send({user: result, token: getToken(result)});
+        return response.send({
+          id: result.id,
+          name: result.name,
+          email: result.email,
+          haveAccess: result.have_access,
+          isAdmin: result.is_admin,
+          token: getToken(result)
+        });
       })
       .catch(error => {
         logger.info(`Create User Error While Register User: ${error.stack}`);
@@ -72,7 +84,15 @@ const getUserById = (request, response) => {
   pool
   .query(`SELECT id, name, email, have_access, is_admin created_on FROM users WHERE id=${id}`)
   .then(res => {
-    return response.status(200).send(res.rows[0])
+    const result = res.rows[0];
+    return response.status(200).send({
+        id: result.id,
+        name: result.name,
+        email: result.email,
+        haveAccess: result.have_access,
+        isAdmin: result.is_admin,
+        token: getToken(result)
+    })
   })
   .catch (error => {
     logger.info(`Error while querying user ${error.stack}`);
@@ -89,8 +109,16 @@ const updateUser = (request, response) => {
       SET name=${name}, email=${email}, password=${hash}, is_admin=${is_admin}, have_access=${have_access} 
       WHERE id=${request.params.id} RETURNING *`)
       .then(res => {
+        const result = res.rows[0];
         logger.debug('Пользователь изменен');
-        return response.status(201).send(res.rows[0]);
+        return response.status(201).send({
+          id: result.id,
+          name: result.name,
+          email: result.email,
+          haveAccess: result.have_access,
+          isAdmin: result.is_admin,
+          token: getToken(result)
+        });
       })
       .catch(error => {
         logger.info(error.stack);
@@ -131,7 +159,14 @@ const login = async (request, response) => {
       }
       const result = res.rows[0];
       delete result.password;
-      return  response.send({user: result, token: getToken(result)});
+      return  response.send({
+          id: result.id,
+          name: result.name,
+          email: result.email,
+          haveAccess: result.have_access,
+          isAdmin: result.is_admin,
+          token: getToken(result)
+      });
     })
     .catch(error => {
       logger.info(error.stack);
