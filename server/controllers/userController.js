@@ -61,9 +61,9 @@ const createAdmin = (request, response) => {
     .hash(adminData.password, 10)
     .then(hash => {
       const created_on = moment(new Date());
-      const values = [adminData.name, adminData.email, hash, created_on]
+      const values = [adminData.name, adminData.email, hash, adminData.have_access, adminData.is_admin, created_on]
       pool
-      .query(`INSERT INTO users(name, email, password, created_on) VALUES($1, $2, $3, $4) RETURNING *`, values)
+      .query(`INSERT INTO users(name, email, password, have_access, is_admin, created_on) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`, values)
       .then(res => {
         const result = res.rows;
         delete result.password;

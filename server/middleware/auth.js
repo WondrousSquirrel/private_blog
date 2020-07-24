@@ -8,8 +8,8 @@ const getToken = (user) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      isAdmin: user.is_admin,
-      haveAccess: user.have_access
+      is_admin: user.is_admin,
+      have_access: user.have_access
     },
     authConfig.secretKey,
     {
@@ -29,7 +29,6 @@ const isAuthenticated = (request, response, next) => {
       }
       request.user = decode;
       next();
-      return;
     });
   } else {
     return response.status(401).send('Необходимо войти в систему');
@@ -39,7 +38,7 @@ const isAuthenticated = (request, response, next) => {
 const isAdmin = async (request, response, next) => {
   try {
     const user = request.user;
-    if (user.isAdmin === false) {
+    if (user.is_admin === false) {
       return response.status(403).send("Необходимы привелегии администратора");
     }
     next();
