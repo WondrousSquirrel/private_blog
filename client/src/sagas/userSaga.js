@@ -2,7 +2,14 @@ import { takeEvery, put, call, select, takeLatest } from "redux-saga/effects";
 import Cookie from 'js-cookie';
 
 import { registerService, loginService, getUserService } from "./services/userService";
-import { registerSuccess, registerFailed, loginFailed, loginSuccess, getUserSuccess, getUserFailed } from "../actions/userActions";
+import {
+  registerSuccess,
+  registerFailed,
+  loginFailed,
+  loginSuccess,
+  getUserSuccess,
+  getUserFailed } 
+  from "../actions/userActions";
 import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_FAIL,

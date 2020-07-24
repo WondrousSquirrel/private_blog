@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { logout } from '../../actions/userActions';
 
 const NavbarComponent = ({ logout, authUser}) => {
@@ -15,6 +16,7 @@ const NavbarComponent = ({ logout, authUser}) => {
       <Navbar className='navbar'>
         <Navbar.Brand as={Link} to='/'>Brand Link</Navbar.Brand>
         <Nav>
+          {/* eslint-disable-next-line */}
           {authUser.hasOwnProperty('id') ? <>
             <Nav.Link as={Link} to='/profile'>Профиль</Nav.Link>
             <Nav.Link as={Link} onClick={onClick} to='/'>Выход</Nav.Link>  
@@ -37,6 +39,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(logout());
   },
 });
+
+NavbarComponent.propTypes = {
+  authUser: PropTypes.object.isRequired,
+  logout: PropTypes.object.func,
+};
 
 export default connect(
   mapStateToProps,
