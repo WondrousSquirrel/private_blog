@@ -33,7 +33,7 @@ const Profile = (props) => {
         <p><AiOutlineIdcard /> {props.user.name}</p>
         <p><AiOutlineMail /> {props.user.email}</p>
         <p><AiOutlineKey /> 
-          {props.user.haveAccess ? 'Открытый доступ' : 'Ждет одобрение администратора'}</p>
+          {props.user.haveAccess ? ' Открытый доступ' : ' Ждет одобрение администратора'}</p>
         {props.user.isAdmin ? <Button className='admin-button'>Админка</Button>: ''}
       </div>
     </div>
@@ -52,7 +52,7 @@ const mapDispatchToProps = dispatch => ({
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  getUserRequest: PropTypes.object.func,
+  getUserRequest: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
