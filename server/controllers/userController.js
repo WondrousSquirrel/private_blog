@@ -133,12 +133,11 @@ const updateUser = (request, response) => {
 }
 
 const deleteUser =  (request, response) => {
+  const id = request.params.id;
   pool
-  .query(`DELETE FROM users WHERE id=${request.params.id}`)
-  .then(res => {
-    const result = res.rows[0];
-    delete result.password;
-    return response.send(result);
+  .query(`DELETE FROM users WHERE id='${id}'`)
+  .then(() => {
+    return response.send('Пользователь удален');
   })
   .catch(error => {
     logger.info(`Error while deleting user ${error.stack}`);
