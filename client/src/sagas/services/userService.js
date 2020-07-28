@@ -38,3 +38,14 @@ export const getUserService = async (id, token) => {
     throw error.response.data;
   }
 };
+
+export const deleteService = async id => {
+  try {
+    const response = await axios
+      .delete(`${endpoint}/api/user/${id}`);
+    Cookie.remove("user_data");
+    // return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};

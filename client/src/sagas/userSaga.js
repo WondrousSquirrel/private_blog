@@ -1,14 +1,17 @@
 import { takeEvery, put, call, select, takeLatest } from "redux-saga/effects";
 import Cookie from 'js-cookie';
 
-import { registerService, loginService, getUserService } from "./services/userService";
+import { registerService, loginService, getUserService, deleteService } from "./services/userService";
 import {
   registerSuccess,
   registerFailed,
   loginFailed,
   loginSuccess,
   getUserSuccess,
-  getUserFailed } 
+  getUserFailed, 
+  deleteUserSuccess,
+  deleteUserFailed
+} 
   from "../actions/userActions";
 import {
   USER_REGISTER_REQUEST,
@@ -19,7 +22,10 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   GET_USER_REQUEST,
-  GET_USER_FAIL
+  GET_USER_FAIL,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL
 } from "../types/types";
 import {
   requestFailedNotifications,
@@ -31,11 +37,11 @@ export function* registerSaga() {
 }
 
 export function* authFail() {
-  yield takeEvery([USER_REGISTER_FAIL, LOGIN_FAIL, GET_USER_FAIL], authFailWorker);
+  yield takeEvery([USER_REGISTER_FAIL, LOGIN_FAIL, GET_USER_FAIL, DELETE_USER_FAIL], authFailWorker);
 }
 
 export function* authSuccess() {
-  yield takeEvery([USER_REGISTER_SUCCESS, LOGIN_SUCCESS], authSuccessWorker);
+  yield takeEvery([USER_REGISTER_SUCCESS, LOGIN_SUCCESS, DELETE_USER_SUCCESS], authSuccessWorker);
 }
 
 export function* loginSaga() {
@@ -49,6 +55,12 @@ export function* logoutSaga() {
 export function* getUserSaga() {
   yield takeEvery(GET_USER_REQUEST, getUserWorker);
 }
+
+export function* deleteUserSaga() {
+  yield takeLatest(DELETE_USER_REQUEST, deleteUserWorker);
+}
+
+const getUser = state => state.user;
 
 /* Workers */
 function* registerWorker(action) {
@@ -81,6 +93,8 @@ function* authSuccessWorker(action) {
     break;
   case LOGIN_SUCCESS: 
     message = 'Вход произошел успешно';
+  case DELETE_USER_SUCCESS:
+    message = 'Пользоваель удален'
     break;
   } 
 
@@ -94,12 +108,22 @@ function* authFailWorker() {
 }
 
 function* getUserWorker() {
-  const getUser = state => state.user;
   const user = yield select(getUser);
   try {
     const result = yield call(getUserService, user.id, user.token);
     yield put(getUserSuccess(result));
   } catch (error) {
     yield put(getUserFailed(error));
+  }
+}
+
+function* deleteUserWorker() {
+  const user = yield select(getUser);
+  console.log(user.id)
+  try {
+    yield call(deleteService, user.id);
+    yield put(deleteUserSuccess());
+  } catch (error) {
+    yield put(deleteUserFailed(error));
   }
 }
