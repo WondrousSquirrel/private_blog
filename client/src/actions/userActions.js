@@ -63,13 +63,13 @@ export const getUserFailed = error => ({
 
 export const deleteUserRequest = () => ({
   type: DELETE_USER_REQUEST
-})
+});
 
 export const deleteUserSuccess = () => ({
   type: DELETE_USER_SUCCESS
-})
+});
 
 export const deleteUserFailed = error => ({
   type: DELETE_USER_FAIL,
   payload: error
-})
+});

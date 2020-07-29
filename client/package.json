@@ -6,9 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --color --config ./webpack.dev.js",
     "build": "webpack --config ./webpack.prod.js",
-    "lint": "eslint **/*.js --quiet",
-    "lint:full": "eslint **/*.js",
-    "lint:fix": "eslint --fix **/*.js"
+    "lint": "eslint '**/*.js' --quiet",
+    "lint:full": "eslint '**/*.js'",
+    "lint:fix": "eslint --fix '**/*.js'"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

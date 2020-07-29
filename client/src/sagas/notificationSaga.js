@@ -1,4 +1,4 @@
-import { takeEvery, put, call, delay } from "redux-saga/effects";
+import { takeEvery, put, delay } from "redux-saga/effects";
 import { NOTIFICATION_OPEN } from "../types/types";
 import { closeNotification } from "../actions/notificationActions";
 

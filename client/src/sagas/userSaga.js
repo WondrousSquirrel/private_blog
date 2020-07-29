@@ -1,7 +1,12 @@
 import { takeEvery, put, call, select, takeLatest } from "redux-saga/effects";
 import Cookie from 'js-cookie';
 
-import { registerService, loginService, getUserService, deleteService } from "./services/userService";
+import {
+  registerService,
+  loginService,
+  getUserService,
+  deleteService
+} from "./services/userService";
 import {
   registerSuccess,
   registerFailed,
@@ -37,7 +42,10 @@ export function* registerSaga() {
 }
 
 export function* authFail() {
-  yield takeEvery([USER_REGISTER_FAIL, LOGIN_FAIL, GET_USER_FAIL, DELETE_USER_FAIL], authFailWorker);
+  yield takeEvery([
+    USER_REGISTER_FAIL,
+    LOGIN_FAIL, GET_USER_FAIL,
+    DELETE_USER_FAIL],authFailWorker);
 }
 
 export function* authSuccess() {
@@ -93,8 +101,9 @@ function* authSuccessWorker(action) {
     break;
   case LOGIN_SUCCESS: 
     message = 'Вход произошел успешно';
+    break;
   case DELETE_USER_SUCCESS:
-    message = 'Пользоваель удален'
+    message = 'Пользоваель удален';
     break;
   } 
 
@@ -119,7 +128,6 @@ function* getUserWorker() {
 
 function* deleteUserWorker() {
   const user = yield select(getUser);
-  console.log(user.id)
   try {
     yield call(deleteService, user.id);
     yield put(deleteUserSuccess());

@@ -41,10 +41,9 @@ export const getUserService = async (id, token) => {
 
 export const deleteService = async id => {
   try {
-    const response = await axios
+    await axios
       .delete(`${endpoint}/api/user/${id}`);
     Cookie.remove("user_data");
-    // return response.data;
   } catch (error) {
     throw error.response.data;
   }

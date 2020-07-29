@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { withFormik, Form, Field } from "formik";
 import { Button } from 'react-bootstrap';
+import Cookie from 'js-cookie';
 import { Link } from 'react-router';
 import { registerRequest } from '../../actions/userActions';
+
+const loadedUser = Cookie.getJSON('user_data');
 
 const EditUserForm = ({ errors, touched, history }) => {
   return (
@@ -14,12 +17,12 @@ const EditUserForm = ({ errors, touched, history }) => {
         <p className='profile-form-title'>Редактирование профиля</p>
         <div className="fields">
           <label htmlFor="name">Имя</label>
-          <Field name="name" type="text" />
+          <Field name="name" type="text" placeholder={loadedUser.name}/>
         </div>
         {touched.name && errors.name && <div className="errors">{errors.name}</div>}
         <div className="fields">
           <label htmlFor="email">Электроный адрес</label>
-          <Field name="email" type="text" />
+          <Field name="email" type="text" placeholder={loadedUser.email}/>
         </div>
         {touched.email && errors.email && <div className="errors">{errors.email}</div>}
         <div className="fields">

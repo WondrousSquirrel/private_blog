@@ -42,14 +42,14 @@ export default function (state=initialState, {type, payload}) {
     return {
       ...state, 
       loading: true
-    }
+    };
   case DELETE_USER_SUCCESS:
-    return { }
+    return { };
   case DELETE_USER_FAIL:
     return {
       loading: false,
       error: payload
-    }
+    };
   case LOGOUT:
     return {};
   default: return state;
